@@ -17,11 +17,11 @@ public class MultiQuizActivity extends AppCompatActivity {
     public static final String CURRENT_QUESTION = "current_question";
     public static final String NUM_CORRECT = "num_correct";
     public static final String ANSWER = "answer";
+
     private int ids_answers[] = {
             R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4
     };
     private String[] all_questions;
-
     private TextView text_question;
     private RadioGroup group;
     private Button btn_next, btn_prev;
@@ -29,7 +29,7 @@ public class MultiQuizActivity extends AppCompatActivity {
     private int correct_ans;
     private int current_quest;
     private int[] answer;
-    private Boolean[] num_correct;
+    private boolean[] num_correct;
 
     //IMPORTANT: és el metode PROTECTED, el segon.
     @Override
@@ -92,7 +92,7 @@ public class MultiQuizActivity extends AppCompatActivity {
     }
 
     private void reset() {
-        num_correct= new Boolean[all_questions.length];
+        num_correct= new boolean[all_questions.length];
         answer= new int[all_questions.length];
         for (int i=0; i<answer.length;i++) {
             answer[i]=-1;
@@ -114,7 +114,7 @@ public class MultiQuizActivity extends AppCompatActivity {
         String num_noans = getResources().getString(R.string.noanswer);
 
         String message=
-        String.format("num_correct: %d\n num_noans: %d\n num_incorrect%d\n" , correct, noanswer, incorrect);
+        String.format(num_correct+": "+correct+"\n"+num_noans+": "+ noanswer+"\n"+num_incorrect+": "+incorrect+"\n");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.results);
