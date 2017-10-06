@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check">Comprueva</string>
+    <string name="congratulations">Enhorabuena!</string>
+    <string name="corrects">Correctas</string>
+    <string name="finish">Acaba</string>
+    <string name="incorrects">Incorrectas</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+    <string name="question">Pregunta</string>
+    <string name="tryagain">Intentalo de nuevo!</string>
+
+    <array name="all_questions">
+        <item>¿Cúal es la capital del Reino Unido?;Barcelona;Thimpu;Sidney;*London</item>
+        <item>¿Cúal es la capital de Madagascar?;Lilongwe;*Antananarivo;Polokwane;Maputo</item>
+    </array>
+</resources>
