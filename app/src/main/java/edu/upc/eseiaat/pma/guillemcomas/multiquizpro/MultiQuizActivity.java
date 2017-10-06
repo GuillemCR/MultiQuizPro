@@ -1,5 +1,7 @@
 package edu.upc.eseiaat.pma.guillemcomas.multiquizpro;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,19 +13,34 @@ import android.widget.Toast;
 
 public class MultiQuizActivity extends AppCompatActivity {
 
+    public static final String CORRECT_ANSWER = "correct_answer";
+    public static final String CURRENT_QUESTION = "current_question";
+    public static final String NUM_CORRECT = "num_correct";
+    public static final String ANSWER = "answer";
     private int ids_answers[] = {
             R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4
     };
+    private String[] all_questions;
+
+    private TextView text_question;
+    private RadioGroup group;
+    private Button btn_next, btn_prev;
+
     private int correct_ans;
     private int current_quest;
     private int[] answer;
-    private String[] all_questions;
-    private TextView text_question;
     private Boolean[] num_correct;
-    private RadioGroup group;
-    private Button btn_next;
-    private Button btn_prev;
 
+    //IMPORTANT: és el metode PROTECTED, el segon.
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt(CORRECT_ANSWER, correct_ans);
+        outState.putInt(CURRENT_QUESTION, current_quest);
+        outState.putBooleanArray(NUM_CORRECT, num_correct);
+        outState.putIntArray(ANSWER, answer);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +53,17 @@ public class MultiQuizActivity extends AppCompatActivity {
         btn_prev = (Button) findViewById(R.id.btn_prev);
 
         all_questions = getResources().getStringArray(R.array.all_questions);
-        num_correct= new Boolean[all_questions.length];
-        answer= new int[all_questions.length];
-        for (int i=0; i<answer.length;i++) {
-            answer[i]=-1;
+
+        if (savedInstanceState == null) reset();
+        else {
+            Bundle state = savedInstanceState;
+            correct_ans = state.getInt(CORRECT_ANSWER);
+            current_quest = state.getInt(CURRENT_QUESTION);
+            num_correct = state.getBooleanArray(NUM_CORRECT);
+            answer = state.getIntArray(ANSWER);
+            showQuest();
         }
-        current_quest=0;
-        showQuest();
+
         //TODO: commando per llistat de coses a fer!
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,17 +74,7 @@ public class MultiQuizActivity extends AppCompatActivity {
                     current_quest++;
                     showQuest();
                 } else {
-                    int correct=0, incorrect=0;
-                    for (boolean b: num_correct) {
-                        if (b) correct++;
-                        else incorrect++;
-                    }
-
-                    String num_correct = getResources().getString(R.string.corrects);
-                    String num_incorrect = getResources().getString(R.string.incorrects);
-                    Toast.makeText(MultiQuizActivity.this, num_correct+": "+correct+
-                            " -- "+num_incorrect+": "+incorrect, Toast.LENGTH_LONG).show();
-                    finish();
+                    Check_results();
                 }
             }
         });
@@ -78,6 +89,50 @@ public class MultiQuizActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void reset() {
+        num_correct= new Boolean[all_questions.length];
+        answer= new int[all_questions.length];
+        for (int i=0; i<answer.length;i++) {
+            answer[i]=-1;
+        }
+        current_quest=0;
+        showQuest();
+    }
+
+    private void Check_results() {
+        int correct=0, incorrect=0, noanswer=0;
+        for (int i=0; i<all_questions.length; i++) {
+            if (num_correct[i]) correct++;
+            else if (answer[i]==-1) noanswer++;
+            else incorrect++;
+        }
+
+        String num_correct = getResources().getString(R.string.corrects);
+        String num_incorrect = getResources().getString(R.string.incorrects);
+        String num_noans = getResources().getString(R.string.noanswer);
+
+        String message=
+        String.format("num_correct: %d\n num_noans: %d\n num_incorrect%d\n" , correct, noanswer, incorrect);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.results);
+        builder.setMessage(message);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.finish, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                MultiQuizActivity.this.finish();
+            }
+        });
+        builder.setNegativeButton(R.string.startover, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                reset();
+            }
+        });
+        builder.create().show();
     }
 
     private void showQuest() {
@@ -125,4 +180,3 @@ public class MultiQuizActivity extends AppCompatActivity {
         answer[current_quest] = ans;
     }
 }
-

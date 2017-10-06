@@ -14,4 +14,7 @@
         <item>Quina és la capital del Regne Unit?;Barcelona;Thimpu;Sidney;*London</item>
         <item>Quina és la capital de Madagascar?;Lilongwe;*Antananarivo;Polokwane;Maputo</item>
     </array>
+    <string name="noanswer">En blanc</string>
+    <string name="results">Resultat</string>
+    <string name="startover">Tornar a Començar</string>
 </resources>

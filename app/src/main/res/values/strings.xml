@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">MultiQuiz</string>
+    <string name="app_name" translatable="false">MultiQuizPro</string>
     <string name="question">Question</string>
     <string name="check">Check</string>
     <string name="congratulations">Congratulations!</string>
@@ -9,21 +9,14 @@
     <string name="previous">Previous</string>
     <string name="corrects">Corrects</string>
     <string name="incorrects">Incorrects</string>
-
-    <!--
-    DE LA SESSIO 2:
-    <string name="question_content">What is the capital of United Kingdom?</string>
-        <array name="answers">
-            <item>Barcelona</item>
-            <item>Thimpu</item>
-            <item>Sidney</item>
-            <item>London</item>
-        </array>
-        <integer name="correct_ans">3</integer>
-    -->
+    <string name="noanswer">No answers</string>
+    <string name="results">Results</string>
+    <string name="startover">Start Over</string>
 
     <array name="all_questions">
         <item>What is the capital of United Kingdom?;Barcelona;Thimpu;Sidney;*London</item>
         <item>What is the capital of Madagascar?;Lilongwe;*Antananarivo;Polokwane;Maputo</item>
+        <item>What is the capital of United States?;*Lilongwe;Antananarivo;Polokwane;Maputo</item>
+        <item>What is the capital of Mongolia?;Lilongwe;Antananarivo;*Polokwane;Maputo</item>
     </array>
 </resources>
