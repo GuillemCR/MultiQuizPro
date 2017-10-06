@@ -9,12 +9,14 @@
     <string name="previous">Anterior</string>
     <string name="question">Pregunta</string>
     <string name="tryagain">Torna a provar!</string>
+    <string name="noanswer">En blanc</string>
+    <string name="results">Resultat</string>
+    <string name="startover">Tornar a Començar</string>
 
     <array name="all_questions">
         <item>Quina és la capital del Regne Unit?;Barcelona;Thimpu;Sidney;*London</item>
         <item>Quina és la capital de Madagascar?;Lilongwe;*Antananarivo;Polokwane;Maputo</item>
+        <item>Quina és la capital de Estats Units?;*Washington DC;Quebec;Los Angeles;Dallas</item>
+        <item>Quina és la capital de Mongolia?;Shangai;Katmandú;*Ulán Bator;Seül</item>
     </array>
-    <string name="noanswer">En blanc</string>
-    <string name="results">Resultat</string>
-    <string name="startover">Tornar a Començar</string>
 </resources>

@@ -16,7 +16,7 @@
     <array name="all_questions">
         <item>What is the capital of United Kingdom?;Barcelona;Thimpu;Sidney;*London</item>
         <item>What is the capital of Madagascar?;Lilongwe;*Antananarivo;Polokwane;Maputo</item>
-        <item>What is the capital of United States?;*Lilongwe;Antananarivo;Polokwane;Maputo</item>
-        <item>What is the capital of Mongolia?;Lilongwe;Antananarivo;*Polokwane;Maputo</item>
+        <item>What is the capital of United States?;*Washington DC;Quebec;Los Angeles;Dallas</item>
+        <item>What is the capital of Mongolia?;Shangai;Katmandú;*Ulán Bator;Seül</item>
     </array>
 </resources>
